@@ -57,13 +57,16 @@ class Voto
     /**
      * Set valutazione
      *
-     * @param string $valutazione
+     * @param float $valutazione
      *
      * @return Voto
      */
     public function setValutazione($valutazione)
     {
-        $this->valutazione = $valutazione;
+        // non vogliamo che un valore equivalente, ma non identico triggeri l'invio email di notifica
+        if($valutazione == $this->valutazione) return;
+
+        $this->valutazione = sprintf('%.1f', $valutazione);
 
         return $this;
     }
@@ -71,7 +74,7 @@ class Voto
     /**
      * Get valutazione
      *
-     * @return string
+     * @return float
      */
     public function getValutazione()
     {

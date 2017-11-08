@@ -20,6 +20,7 @@ class AlunnoType extends AbstractType
             ->add('email')
             ->add('voti', CollectionType::class, [
                 'allow_add' => true,
+                'allow_delete' => true,
                 'entry_type' => VotoType::class,
                 'by_reference' => false,
                 'entry_options' => [

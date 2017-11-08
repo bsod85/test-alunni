@@ -43,10 +43,18 @@ class AlunnoControllerTest extends WebTestCase
 
         $values['appbundle_alunno']['voti'][0]['valutazione'] = 5;
 
-        $client->followRedirects();
+        $client->enableProfiler();
 
-        $crawler = $client->request($form->getMethod(), $form->getUri(), $values,
+        $client->request($form->getMethod(), $form->getUri(), $values,
             $form->getPhpFiles());
+
+        $mailCollector = $client->getProfile()->getCollector('swiftmailer');
+
+        $this->assertGreaterThan(0, $mailCollector->getMessageCount());
+
+        $client->followRedirect();
+
+        $crawler = $client->request('GET', $url);
 
         $form = $crawler->selectButton('appbundle_alunno[submit]')->form();
 
@@ -73,10 +81,18 @@ class AlunnoControllerTest extends WebTestCase
 
         $values['appbundle_alunno']['voti'][$numeroVoti]['valutazione'] = 5;
 
-        $client->followRedirects();
+        $client->enableProfiler();
 
-        $crawler = $client->request($form->getMethod(), $form->getUri(), $values,
+        $client->request($form->getMethod(), $form->getUri(), $values,
             $form->getPhpFiles());
+
+        $mailCollector = $client->getProfile()->getCollector('swiftmailer');
+
+        $this->assertGreaterThan(0, $mailCollector->getMessageCount());
+
+        $client->followRedirect();
+
+        $crawler = $client->request('GET', $url);
 
         $form = $crawler->selectButton('appbundle_alunno[submit]')->form();
 

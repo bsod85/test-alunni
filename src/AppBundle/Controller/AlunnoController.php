@@ -53,7 +53,7 @@ class AlunnoController extends Controller
 
             $em->flush();
 
-            $this->redirectToRoute('alunni_lista');
+            return $this->redirectToRoute('alunni_lista');
         }
 
         return $this->render('AppBundle:Alunni:new-edit.html.twig', [
