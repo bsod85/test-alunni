@@ -1,5 +1,9 @@
 {% extends "::base.html.twig" %}
 
+{% block title %}
+    Modifica Alunno
+{% endblock %}
+
 {% block body %}
 
 
@@ -7,7 +11,7 @@
 
         <a href="{{ path("alunni_lista") }}">&lt; Torna alla lista</a>
 
-        <h1>Modifica alunno</h1>
+        <h1>{{ block('title') }}</h1>
 
         {{ form_start(form) }}
             {{ form_row(form.nome) }}
