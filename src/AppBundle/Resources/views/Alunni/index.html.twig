@@ -1,0 +1,53 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+
+    <div class="container">
+
+        <h1>Alunni</h1>
+
+        <div class="row">
+            <div class="col-xs-12">
+                <table id="tabella-alunni" class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Cognome
+                            </th>
+                            <th>
+                                Email
+                            </th>
+                            <th>
+                                Azioni
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for alunno in alunni %}
+                            <tr>
+                                <td>
+                                    {{ alunno.nome }}
+                                </td>
+                                <td>
+                                    {{ alunno.cognome }}
+                                </td>
+                                <td>
+                                    {{ alunno.email }}
+                                </td>
+                                <td>
+                                    <a href="{{ path("alunni_modifica_voti", {id: alunno.id}) }}" class="btn btn-primary">Modifica</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}

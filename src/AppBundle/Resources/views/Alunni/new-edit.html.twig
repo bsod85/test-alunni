@@ -1,0 +1,48 @@
+{% extends "::base.html.twig" %}
+
+{% block body %}
+
+
+    <div class="container">
+
+        <a href="{{ path("alunni_lista") }}">&lt; Torna alla lista</a>
+
+        <h1>Modifica alunno</h1>
+
+        {{ form_start(form) }}
+            {{ form_row(form.nome) }}
+            {{ form_row(form.cognome) }}
+            {{ form_row(form.email) }}
+            {{ form_row(form.voti) }}
+
+            <div class="form-group">
+                <button id="aggiungi-voto" type="button" class="btn btn-primary">Aggiungi voto</button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+
+{% endblock body %}
+
+{% block javascripts %}
+    <script>
+        var votiCount = '{{ form.voti|length }}';
+
+        jQuery(document).ready(function() {
+
+            jQuery('#aggiungi-voto').click(function(e) {
+
+
+                e.preventDefault();
+
+                var votiList = jQuery('#appbundle_alunno_voti');
+
+                var newWidget = votiList.attr('data-prototype');
+
+                newWidget = newWidget.replace(/__name__/g, votiCount);
+                votiCount++;
+
+                jQuery(newWidget).appendTo(votiList);
+            });
+        })
+    </script>
+{% endblock javascripts %}
