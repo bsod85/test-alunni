@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Alunno
@@ -26,6 +27,7 @@ class Alunno
      * @var Voto
      *
      * @ORM\OneToMany(targetEntity="Voto", mappedBy="alunno", cascade={"persist", "remove"}, orphanRemoval=true)
+     * @Assert\Valid()
      */
     private $voti;
 
@@ -33,6 +35,7 @@ class Alunno
      * @var string
      *
      * @ORM\Column(name="nome", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $nome;
 
@@ -40,6 +43,7 @@ class Alunno
      * @var string
      *
      * @ORM\Column(name="cognome", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $cognome;
 
@@ -47,6 +51,7 @@ class Alunno
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $email;
 

@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Voto
@@ -33,6 +35,13 @@ class Voto
      * @var string
      *
      * @ORM\Column(name="valutazione", type="decimal", precision=3, scale=1)
+     * @Assert\NotNull()
+     * @Assert\Range(
+     *      min = 0,
+     *      max = 10,
+     *      minMessage = "Il voto non può essere inferiore a 0",
+     *      maxMessage = "Il voto non può essere superiore a 10"
+     * )
      */
     private $valutazione;
 
